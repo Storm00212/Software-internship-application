@@ -1,0 +1,105 @@
+/* ─── Design tokens ─────────────────────────────────────────── */
+:root {
+  --soil:        #2C1A0E;
+  --bark:        #4A2E1A;
+  --clay:        #8B5E3C;
+  --wheat:       #D4A96A;
+  --straw:       #F0DEB4;
+  --cream:       #FAF6EF;
+  --leaf:        #2D6A4F;
+  --sage:        #40916C;
+  --sprout:      #74C69D;
+  --sky:         #4895C2;
+  --amber:       #E76F0B;
+  --ember:       #C0392B;
+  --mist:        #F4F1EB;
+  --border:      #E8DFD0;
+  --text-main:   #1C1008;
+  --text-soft:   #6B5740;
+  --text-muted:  #A08060;
+  --shadow-sm:   0 1px 3px rgba(44,26,14,0.08);
+  --shadow-md:   0 4px 16px rgba(44,26,14,0.10);
+  --shadow-lg:   0 8px 32px rgba(44,26,14,0.13);
+  --radius-sm:   6px;
+  --radius-md:   12px;
+  --radius-lg:   18px;
+  --radius-xl:   28px;
+}
+
+/* ─── Reset ──────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--text-main);
+  min-height: 100vh;
+}
+
+a { color: inherit; text-decoration: none; }
+button { cursor: pointer; font-family: inherit; }
+input, select, textarea { font-family: inherit; }
+
+/* ─── Scrollbar ───────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--straw); }
+::-webkit-scrollbar-thumb { background: var(--clay); border-radius: 3px; }
+
+/* ─── Utility classes ────────────────────────────────────────── */
+.serif { font-family: 'DM Serif Display', serif; }
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.status-active    { background: #E8F5EE; color: var(--leaf); }
+.status-at_risk   { background: #FEF3E2; color: var(--amber); }
+.status-completed { background: #EBF2F8; color: var(--sky);   }
+
+.stage-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  background: var(--mist);
+  color: var(--text-soft);
+  border: 1px solid var(--border);
+}
+
+/* ─── Card ───────────────────────────────────────────────────── */
+.card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ─── Page fade-in ───────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+.fade-up { animation: fadeUp 0.35s ease both; }
+
+/* ─── Loading spinner ────────────────────────────────────────── */
+@keyframes spin { to { transform: rotate(360deg); } }
+.spinner {
+  width: 22px; height: 22px;
+  border: 2px solid var(--straw);
+  border-top-color: var(--sage);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
