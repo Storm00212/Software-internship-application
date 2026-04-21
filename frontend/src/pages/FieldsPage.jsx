@@ -90,7 +90,6 @@ export default function FieldsPage() {
       {/* ── Field cards ── */}
       {filtered.length === 0 ? (
         <div className="empty-state">
-          <span style={{ fontSize: 48 }}>🌱</span>
           <p>No fields match your search.</p>
         </div>
       ) : (
@@ -129,12 +128,12 @@ function FieldCard({ field, onClick }) {
       </div>
       <div className="field-card-meta">
         <span className="stage-badge">{STAGE_LABELS[field.stage]}</span>
-        {field.location && <span className="field-meta-item">📍 {field.location}</span>}
-        {field.size_hectares && <span className="field-meta-item">📐 {field.size_hectares} ha</span>}
+        {field.location && <span className="field-meta-item">{field.location}</span>}
+        {field.size_hectares && <span className="field-meta-item">{field.size_hectares} ha</span>}
       </div>
       <div className="field-card-footer">
-        <span className="field-meta-item">🗓 {daysOld}d since planting</span>
-        {field.agent_name && <span className="field-meta-item">👤 {field.agent_name}</span>}
+        <span className="field-meta-item">{daysOld}d since planting</span>
+        {field.agent_name && <span className="field-meta-item">{field.agent_name}</span>}
       </div>
     </div>
   );
