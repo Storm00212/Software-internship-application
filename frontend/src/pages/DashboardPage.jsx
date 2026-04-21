@@ -51,10 +51,10 @@ export default function DashboardPage() {
 
       {/* ── Stat cards ── */}
       <div className="stat-grid">
-        <StatCard label="Total Fields"   value={stats?.total ?? 0} icon="🌾" color="var(--wheat)" />
-        <StatCard label="Active"          value={stats?.statuses?.active ?? 0}    icon="✅" color="var(--sprout)" />
-        <StatCard label="At Risk"         value={stats?.statuses?.at_risk ?? 0}   icon="⚠️"  color="var(--amber)" />
-        <StatCard label="Completed"       value={stats?.statuses?.completed ?? 0} icon="🏁" color="var(--sky)"   />
+        <StatCard label="Total Fields"   value={stats?.total ?? 0} color="var(--wheat)" />
+        <StatCard label="Active"          value={stats?.statuses?.active ?? 0}    color="var(--sprout)" />
+        <StatCard label="At Risk"         value={stats?.statuses?.at_risk ?? 0}   color="var(--amber)" />
+        <StatCard label="Completed"       value={stats?.statuses?.completed ?? 0} color="var(--sky)"   />
       </div>
 
       <div className="dashboard-cols">
@@ -145,10 +145,9 @@ export default function DashboardPage() {
   );
 }
 
-function StatCard({ label, value, icon, color }) {
+function StatCard({ label, value, color }) {
   return (
     <div className="stat-card card">
-      <div className="stat-icon" style={{ background: color + '22', color }}>{icon}</div>
       <div className="stat-value serif">{value}</div>
       <div className="stat-label">{label}</div>
     </div>
