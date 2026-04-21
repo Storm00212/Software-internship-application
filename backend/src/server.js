@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const cors    = require('cors');
 
+const pool = require('../config/db');
 const authRoutes   = require('./routes/auth.routes');
 const fieldRoutes  = require('./routes/field.routes');
 const userRoutes   = require('./routes/user.routes');
@@ -36,4 +37,17 @@ app.use((err, _req, res, _next) => {
 
 // ── Start ─────────────────────────────────────────────────────
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`SmartSeason API running on port ${PORT}`));
+
+const startServer = async () => {
+  try {
+    const client = await pool.connect();
+    await client.query('SELECT 1');
+    client.release();
+    console.log('Database: connected');
+  } catch (err) {
+    console.error('Database: connection failed -', err.message);
+  }
+  app.listen(PORT, () => console.log(`SmartSeason API running on port ${PORT}`));
+};
+
+startServer();
