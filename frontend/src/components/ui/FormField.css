@@ -1,0 +1,58 @@
+.form-field { display: flex; flex-direction: column; gap: 5px; }
+
+.field-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-soft);
+  letter-spacing: 0.02em;
+}
+
+.field-input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--cream);
+  color: var(--text-main);
+  font-size: 14px;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  outline: none;
+}
+.field-input:focus {
+  border-color: var(--sage);
+  box-shadow: 0 0 0 3px rgba(64,145,108,0.12);
+}
+.field-input::placeholder { color: var(--text-muted); }
+
+.field-textarea { resize: vertical; min-height: 80px; }
+
+.field-error {
+  font-size: 12px;
+  color: var(--ember);
+}
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: 7px;
+  padding: 10px 20px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 600;
+  border: 1.5px solid transparent;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+.btn:disabled { opacity: 0.55; cursor: not-allowed; }
+
+.btn-primary   { background: var(--sage);  color: #fff; border-color: var(--sage); }
+.btn-primary:hover:not(:disabled)   { background: var(--leaf); border-color: var(--leaf); }
+
+.btn-secondary { background: var(--mist); color: var(--text-soft); border-color: var(--border); }
+.btn-secondary:hover:not(:disabled) { background: var(--straw); }
+
+.btn-danger    { background: #fef2f2; color: var(--ember); border-color: #fecaca; }
+.btn-danger:hover:not(:disabled)    { background: var(--ember); color: #fff; }
+
+.btn-ghost     { background: none; color: var(--text-soft); border-color: transparent; }
+.btn-ghost:hover:not(:disabled)     { background: var(--mist); }
