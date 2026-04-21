@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import api from '../utils/api';
-import FormField, { Input, Button } from '../components/ui/FormField';
+import FormField, { Input, Select, Button } from '../components/ui/FormField';
 import './LoginPage.css';
 
 export default function LoginPage() {
@@ -10,7 +10,7 @@ export default function LoginPage() {
   const navigate  = useNavigate();
 
   const [isSignup, setIsSignup] = useState(false);
-  const [form,    setForm]    = useState({ name: '', email: '', password: '', confirmPassword: '' });
+  const [form,    setForm]    = useState({ name: '', email: '', password: '', confirmPassword: '', role: 'agent' });
   const [error,   setError]   = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -22,7 +22,7 @@ export default function LoginPage() {
   function toggleMode() {
     setIsSignup((prev) => !prev);
     setError('');
-    setForm({ name: '', email: '', password: '', confirmPassword: '' });
+    setForm({ name: '', email: '', password: '', confirmPassword: '', role: 'agent' });
   }
 
   async function handleSubmit(e) {
@@ -46,6 +46,7 @@ export default function LoginPage() {
           name: form.name,
           email: form.email,
           password: form.password,
+          role: form.role,
         });
         login(data.token, data.user);
         navigate('/dashboard');
@@ -85,7 +86,6 @@ export default function LoginPage() {
       <div className="login-right">
         <div className="login-card fade-up">
           <div className="login-brand">
-            <span style={{ fontSize: 32 }}>🌿</span>
             <h1 className="serif" style={{ fontSize: 28, color: 'var(--soil)' }}>SmartSeason</h1>
             <p style={{ fontSize: 14, color: 'var(--text-muted)', marginTop: 4 }}>
               Field Monitoring System
@@ -131,16 +131,25 @@ export default function LoginPage() {
             </FormField>
 
             {isSignup && (
-              <FormField label="Confirm password">
-                <Input
-                  type="password"
-                  name="confirmPassword"
-                  value={form.confirmPassword}
-                  onChange={handleChange}
-                  placeholder="••••••••"
-                  required
-                />
-              </FormField>
+              <>
+                <FormField label="Confirm password">
+                  <Input
+                    type="password"
+                    name="confirmPassword"
+                    value={form.confirmPassword}
+                    onChange={handleChange}
+                    placeholder="••••••••"
+                    required
+                  />
+                </FormField>
+
+                <FormField label="Role">
+                  <Select name="role" value={form.role} onChange={handleChange}>
+                    <option value="agent">Field Agent</option>
+                    <option value="admin">Admin</option>
+                  </Select>
+                </FormField>
+              </>
             )}
 
             {error && <p className="login-error">{error}</p>}
