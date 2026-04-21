@@ -21,7 +21,6 @@ export default function Layout() {
       {/* ── Sidebar ── */}
       <aside className="sidebar">
         <div className="sidebar-brand">
-          <span className="brand-icon">🌿</span>
           <span className="serif brand-name">SmartSeason</span>
         </div>
 
