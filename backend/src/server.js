@@ -37,17 +37,26 @@ app.use((err, _req, res, _next) => {
 
 // ── Start ─────────────────────────────────────────────────────
 const PORT = process.env.PORT || 5000;
+const MAX_RETRIES = 10;
 
 const startServer = async () => {
-  try {
-    const client = await pool.connect();
-    await client.query('SELECT 1');
-    client.release();
-    console.log('Database: connected');
-  } catch (err) {
-    console.error('Database: connection failed -', err.message);
+  for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
+    try {
+      const client = await pool.connect();
+      await client.query('SELECT 1');
+      client.release();
+      console.log('Database: connected');
+      app.listen(PORT, () => console.log(`SmartSeason API running on port ${PORT}`));
+      return;
+    } catch (err) {
+      console.error(`Database: connection attempt ${attempt}/${MAX_RETRIES} failed - ${err.message}`);
+      if (attempt === MAX_RETRIES) {
+        console.error('Database: failed to connect after 10 attempts');
+        process.exit(1);
+      }
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+    }
   }
-  app.listen(PORT, () => console.log(`SmartSeason API running on port ${PORT}`));
 };
 
 startServer();
