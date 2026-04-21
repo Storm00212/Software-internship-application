@@ -70,6 +70,22 @@
 }
 
 .login-form  { display: flex; flex-direction: column; gap: 16px; }
+.login-toggle {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+.toggle-btn {
+  background: none;
+  border: none;
+  color: var(--leaf);
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  font-size: 14px;
+}
+.toggle-btn:hover { text-decoration: underline; }
 .login-error {
   background: #fef2f2;
   border: 1px solid #fecaca;
