@@ -165,20 +165,6 @@ export default function LoginPage() {
               {isSignup ? 'Sign in' : 'Sign up'}
             </button>
           </p>
-
-          {!isSignup && (
-            <div className="demo-creds">
-              <p className="demo-label">Demo credentials</p>
-              <div className="demo-row">
-                <span>Admin</span>
-                <code>admin@smartseason.com / Admin@123</code>
-              </div>
-              <div className="demo-row">
-                <span>Agent</span>
-                <code>agent@smartseason.com / Agent@123</code>
-              </div>
-            </div>
-          )}
         </div>
       </div>
     </div>
